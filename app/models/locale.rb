@@ -6,6 +6,8 @@ module I18n::Backend
     has_many :translations, :dependent => :destroy
     scope :non_defaults, :conditions => ["code != ?", I18n.default_locale.to_s]
 
+    attr_accessible :code, :name
+
     # scope :english, lambda { |m| { return Hash.new if m.nil?; :conditions => "locales.locale = '#{m}'" } }
     # scope :in_city, lambda { |m| { return {} if m.nil?; :joins => [cities], :conditions => "cities.name = '#{m}' } }
     

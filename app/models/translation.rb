@@ -6,6 +6,8 @@ class Translation < ActiveRecord::Base
   before_validation :generate_hash_key, :on => :create
   after_update :update_cache
 
+  attr_accessible :key, :pluralization_index, :value
+
   scope :untranslated, :conditions => {:value => nil}, :order => :raw_key
   scope :unsourced, :conditions => {:source_id => nil}, :order => :raw_key
   scope :translated, :conditions => 'value IS NOT NULL', :order => :raw_key
